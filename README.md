@@ -1,36 +1,60 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
 
-First, run the development server:
+
+## Project Structure
+
+This is a monorepo project and contains a backend nodejs application under backend/
+
+First, run the development servers for the frontend and the backend:
 
 ```bash
-npm run dev
-# or
+yarn install
+
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
+
+To run the backend:
+
+1. cd backend/
+2. Create .env file under the backend/ folder
+3. Add OPENAI_API_KEY inside the .env file
+4. run yarn install
+5. run yarn dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Architecture design
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The project depends on Nextjs and Nodejs.
 
-## Learn More
+# 🧠 Building a Domain-Specific Assistant with RAG (Retrieval-Augmented Generation)
 
-To learn more about Next.js, take a look at the following resources:
+## 📘 Overview
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+**RAG (Retrieval-Augmented Generation)** enhances a language model like GPT-4 by combining it with a **retrieval system** that provides accurate, up-to-date, or domain-specific knowledge at query time.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+This makes it ideal for building assistants tailored to specific areas like:
+- Admissions (e.g., enrolling students into Harvard)
+- Legal, medical, or technical Q&A
+- Customer support bots
+- Internal documentation agents
 
-## Deploy on Vercel
+The project has a tailored RAG document that will enhance the responses to be very specific to the usecases of the project.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+User Input
+A natural language question is sent (e.g., "How can I apply to Harvard's MBA program?").
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Embedding
+The question is converted into a vector using an embedding model (e.g., text-embedding-3-small).
+
+Retrieval
+The vector is matched against a vector database (InMemory Vector Database) to retrieve the most relevant document chunks.
+
+Augmented Prompt
+The original question + retrieved content are fed into the language model (e.g., GPT-4) to generate a grounded answer.
+
+Response
+The model answers based on real documents, reducing hallucination and increasing accuracy.
+
+A Dashboard that has bookings made by the AI is available at  [Bookings](http://localhost:3000/dashboard/bookings) 
