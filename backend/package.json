@@ -1,0 +1,35 @@
+{
+  "name": "havana_ai_backend",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "scripts": {
+    "seed": "tsx ./src/database/seeder",
+    "dev": "nodemon --exec ts-node src/index.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@langchain/core": "^0.3.51",
+    "@langchain/openai": "^0.5.10",
+    "@libsql/client": "^0.15.4",
+    "better-sqlite3": "^11.9.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "drizzle-orm": "^0.43.1",
+    "express": "^5.1.0",
+    "langchain": "^0.3.24",
+    "openai": "^4.96.2",
+    "socket.io": "^4.8.1",
+    "tsx": "^4.19.4"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.13",
+    "@types/express": "^5.0.1",
+    "@types/socket.io": "^3.0.2",
+    "drizzle-kit": "^0.31.1",
+    "nodemon": "^3.1.10",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  }
+}
